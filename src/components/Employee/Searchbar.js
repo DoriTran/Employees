@@ -11,7 +11,7 @@ const Searcbar = () => {
         <div className="total-employees">Total {totalEmployees} employees</div>
         <div className="search-container">
             <div className="search-wrapper">
-                <input/>
+                <input placeholder="Search Employee by names"/>
                 <FontAwesomeIcon className="search-icon" icon={faSearch}/>    
             </div>
         </div>
