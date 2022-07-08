@@ -1,0 +1,40 @@
+.nav-search {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+}
+
+.total-employees {
+    font-size: 20px;
+    margin: 10px 20px 10px 10px;
+    position: absolute;
+}
+
+.search-container {
+    .search-wrapper {
+        position: relative;
+        input {
+            box-sizing: border-box;
+            border-radius: 4px;
+            border: 2px solid #ccc;
+            width: 400px;
+            height: 35px;
+            text-indent: 15px;
+        }
+        .search-icon {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            cursor: pointer;
+        }
+    }
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+}
+
