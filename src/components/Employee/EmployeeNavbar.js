@@ -1,7 +1,6 @@
 import { Button, Navbar, Container } from "react-bootstrap"
 import { Link } from "react-router-dom";
-import classes from "./EmployeeNavbar.module.scss"
-import React from 'react';
+import "./EmployeeNavbar.scss"
 
 const EmployeeNavbar = () => {
     return (
@@ -13,12 +12,12 @@ const EmployeeNavbar = () => {
                         Employee Manager
                     </Navbar.Brand>    
 
-                    <div className={classes.buttonGroup}>
+                    <div className="buttonGroup">
                         <Link to="/employee">
                             <Button variant="primary" className="mx-2">Employee</Button>
                         </Link>
                         <Link to="/team">
-                            <button  className={classes.customButton}>Team</button> 
+                            <button  className="customButton">Team</button> 
                         </Link>                         
                     </div>
                     
