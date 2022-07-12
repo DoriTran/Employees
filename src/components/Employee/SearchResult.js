@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInfo, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
 
 const SearchResult = (props) => {
-
-
     return (
         <table>
             <tbody>
