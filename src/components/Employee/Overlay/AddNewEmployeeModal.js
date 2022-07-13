@@ -33,13 +33,13 @@ const AddNewEmployeeModal = (props) => {
                 <div className="modal-info">
                     <div className="modal-left">       
                         <InputRow name="address" required label="Address *" placeholder="123, Cầu Giấy, Hà Nội" setInput={setFormInput}/>    
-                        <InputRow name="age" required label="Age employee *" placeholder="Nguyễn Văn A" type="number" setInput={setFormInput}/>
-                        <InputRow name="moneyhour" required label="Money/hour *" type="number" setInput={setFormInput}/>                       
+                        <InputRow name="age" required label="Age employee *" placeholder="18" type="number" setInput={setFormInput}/>
+                        <InputRow name="moneyhour" required label="Money/hour *" placeholder="1000" type="number" setInput={setFormInput}/>                       
                     </div>
                     <div className="modal-right">
                         <SelectRow name="sex" required label="Sex employee *" placeholder="" options={["Male", "Female"]} setInput={setFormInput}/>
                         <InputRow name="startday" required label="Start day *" type="date" setInput={setFormInput}/>
-                        <InputRow name="phone" required label="Phone number *" type="number" setInput={setFormInput}/>
+                        <InputRow name="phone" required label="Phone number *" placeholder="0123456789" type="number" setInput={setFormInput}/>
                     </div>
                 </div>
                 <div className="modal-button-group">

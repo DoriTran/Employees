@@ -2,9 +2,10 @@ import "./EmployeeInteraction.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCirclePlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
-import AddNewEmployeeModal from "./modal/AddNewEmployeeModal"
+import AddNewEmployeeModal from "./Overlay/AddNewEmployeeModal"
+import DeleteEmployeeDialog from "./Overlay/DeleteEmployeeDialog"
 
-const EmployeeInteraction = () => {
+const EmployeeInteraction = (props) => {
     const [isOpeningAddModal, setOpeningAddModal] = useState(false)
     const [isOpeningDelModal, setOpeningDelModal] = useState(false)
 
@@ -13,10 +14,15 @@ const EmployeeInteraction = () => {
         <h3 className="nameDisplay">Employee</h3>
         <div className="button-wrapper">
             <button className="interactButton" onClick={()=>setOpeningAddModal(true)}><FontAwesomeIcon icon={faCirclePlus} /></button>
-            <button className="interactButton" onClick={()=>setOpeningAddModal(true)}><FontAwesomeIcon icon={faTrashAlt} /></button>
+            <button className="interactButton" onClick={()=>setOpeningDelModal(true)}><FontAwesomeIcon icon={faTrashAlt} /></button>
         </div>
-        {isOpeningAddModal && <AddNewEmployeeModal onBackdropClick={()=>setOpeningAddModal(false)} />}
-        {isOpeningDelModal && <AddNewEmployeeModal onBackdropClick={()=>setOpeningAddModal(false)} />}
+        {isOpeningAddModal && 
+            <AddNewEmployeeModal onBackdropClick={()=>setOpeningAddModal(false)} setEmployees={props.setEmployees}/>}
+        {isOpeningDelModal && 
+            <DeleteEmployeeDialog onBackdropClick={()=>setOpeningDelModal(false)} 
+            checkedID={props.checkedID} setCheckedID={props.setCheckedID}
+            setCheckAll={props.setCheckAll}
+            setEmployees={props.setEmployees}/>}
     </div>)
 }
 
