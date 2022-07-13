@@ -1,6 +1,6 @@
 import { Button, Navbar, Container } from "react-bootstrap"
 import { Link } from "react-router-dom";
-import "./EmployeeNavbar.scss"
+import "./Navbar.scss"
 
 const EmployeeNavbar = () => {
     return (

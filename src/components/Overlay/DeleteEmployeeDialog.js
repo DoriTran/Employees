@@ -1,6 +1,6 @@
 import "./DeleteEmployeeDialog.scss"
 import { Button } from "@mui/material"
-import Dialog from '../../Dialog/Dialog'
+import Dialog from '../Dialog/Dialog'
 // import { useEffect, useState } from "react"
 
 const DeleteEmployeeDialog = (props) => {

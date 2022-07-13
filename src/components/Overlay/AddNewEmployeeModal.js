@@ -1,23 +1,24 @@
 import "./AddNewEmployeeModal.scss"
 import { Button, CircularProgress } from "@mui/material"
-import Modal from '../../Modal/Modal'
-import InputRow from "../../Modal/InputRow"
-import SelectRow from "../../Modal/SelectRow"
+import Modal from '../Modal/Modal'
+import InputRow from "../Modal/InputRow"
+import SelectRow from "../Modal/SelectRow"
 import { useEffect, useState } from "react"
 
 const AddNewEmployeeModal = (props) => {
     const submitHandler = () => {
-        console.log(formInput)
+        props.onBackdropClick()
+        props.setEmployees(prevEmployees => {
+            let allID = prevEmployees.map(employee => parseInt(employee.EmployeeID))
+            let maxID = Math.max(allID).toString()
+            return [...prevEmployees, {EmployeeID: maxID, FullName: formInput.fullname, Phone: formInput.phone, Team: "None"}]
+        })
     }
 
     const [formInput, setFormInput] = useState(
         {fullname: "", 
         address: "", age: "", moneyhour: "",
         sex: "Male", startday: "", phone: ""})
-
-    useEffect(() => {
-        console.log(formInput);
-    }, [formInput, formInput.fullname])
     
     return (
     <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()}>

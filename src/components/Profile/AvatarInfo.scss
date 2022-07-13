@@ -1,0 +1,28 @@
+.avatar-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 30px;
+    justify-content: center;
+}
+
+.avatar-img {
+    padding-bottom: 10px ;
+}
+
+.pill-info {
+    background-color: #fff;
+    color:black;
+    border-radius: 7px;
+    font-size: 11px;
+    width: fit-content;
+    padding: 4px;
+    font-weight: bold;
+    margin: 4px;
+}
+
+.pill-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

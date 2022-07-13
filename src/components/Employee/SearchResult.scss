@@ -39,10 +39,6 @@ table {
         td:nth-child(6) {
             width: 15%;
         }
-
-        td FontAwesomeIcon {
-            color: red;
-        }
     }
 }
 
@@ -57,4 +53,9 @@ table {
 
 .info-button {
     color: blue;
+    cursor: pointer;
+}
+
+.delete-button {
+    cursor: pointer;
 }

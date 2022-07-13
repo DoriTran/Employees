@@ -1,0 +1,28 @@
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 10%;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #919191;
+}
+
+.nameDisplay {
+    margin: 15px;
+    font-family: 'Tahoma';
+}
+
+.interactButton {
+    font-size: 35px;
+    background: rgba(0,0,0,0);
+    border: none;
+    height: 100%;
+}

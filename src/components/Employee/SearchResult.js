@@ -1,8 +1,13 @@
 import "./SearchResult.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInfo, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
+import { Link } from "react-router-dom";
 
 const SearchResult = (props) => {
+    const deleteHandler = (EmployeeID) => {
+        props.setCheckedID(prevCheckedIDs => prevCheckedIDs.filter(prevCheckedID => prevCheckedID !== EmployeeID))
+        props.setEmployees(prevEmployees => prevEmployees.filter(prevEmployee => prevEmployee.EmployeeID !== EmployeeID))
+    }
 
     const handleCheckAll = () => {
         props.setCheckAll(!props.checkAll);
@@ -50,8 +55,8 @@ const SearchResult = (props) => {
                             <td>{employee.Team}</td>
                             <td>
                                 <div className="option-wrapper">
-                                    <FontAwesomeIcon className="info-button" icon={faInfo} />
-                                    <FontAwesomeIcon  icon={faTrashAlt} />
+                                    <Link to={`/profile/id=${employee.EmployeeID}`}><FontAwesomeIcon className="info-button" icon={faInfo} /></Link>
+                                    <FontAwesomeIcon className="delete-button" icon={faTrashAlt} onClick={() => deleteHandler(employee.EmployeeID)}/>
                                 </div>
                             </td>
                         </tr>)
