@@ -1,22 +1,24 @@
 import "./DeleteEmployeeDialog.scss"
 import { Button } from "@mui/material"
 import Dialog from '../Dialog/Dialog'
+import { useNavigate } from "react-router-dom";
 
 const DeleteEmployeeDialog = (props) => {
+    const navigate = useNavigate()
+
     const deleteHandler = () => {
-        props.onBackdropClick()
-        props.setCheckedID([])
-        props.setCheckAll(false)
-        props.setEmployees(prev => prev.filter(employee => !props.checkedID.includes(employee.EmployeeID)))
+        console.log("navigate")
+        props.setEmployees(employees => employees.filter(employee => employee.EmployeeID !== props.EmployeeID))
+        navigate("/employee")
     }
 
     return (
         <Dialog onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()}>
             <div className="dialog-container">
-                <div className="dialog-header">Are you sure to delete all employees selected?</div>
+                <div className="dialog-header">Are you sure to delete this employee?</div>
                 <form className="dialog-body" onSubmit={deleteHandler}>
                     <div className="dialog-message">
-                        <div className="dialog-single">All data of these employees will be deleted</div>
+                        <div className="dialog-single">All profile data of {props.FullName} will be deleted</div>
                     </div>
                 </form>
                 <div className="dialog-button-group">

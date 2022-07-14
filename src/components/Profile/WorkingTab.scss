@@ -1,0 +1,62 @@
+.tab-wrapper {
+    padding: 20px;
+}
+
+.tab-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(201, 201, 201);
+}
+
+.tab-title {
+    font-weight: bold;
+    font-size: 45px;
+}
+
+.tab-add-button {
+    cursor: pointer;
+    text-align: center;
+    line-height: 45px;
+    padding-top: 15px;
+}
+
+.tab-body {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 40px;
+    row-gap: 30px;
+}
+
+table.tab-table {
+    width: 100%;
+    line-height: 50px;
+
+    tr {
+        border-bottom: 1px solid rgb(201, 201, 201);
+
+        td:last-child, th:last-child {
+            text-align: center;
+        }
+
+        td:nth-child(1), th:nth-child(1)  {
+            width: 15%;
+            text-align: left;
+            padding-left: 25px;
+        }
+
+        td:nth-child(2), th:nth-child(2) {
+            width: 50%;
+        }
+
+        td:nth-child(3), th:nth-child(3) {
+            width: 25%;
+        }
+
+        td:nth-child(4), th:nth-child(4) {
+            width: 10%;
+        }
+    }
+}

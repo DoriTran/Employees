@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashAlt, faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import EditEmployeeModal from "../Overlay/EditEmployeeModal"
-import DeleteEmployeeDialog from "../Overlay/DeleteEmployeeDialog"
+import DeleteProfileDialog from "../Overlay/DeleteProfileDialog"
 
 const EmployeeInteraction = (props) => {
     const [isOpeningAddModal, setOpeningAddModal] = useState(false)
@@ -19,9 +19,9 @@ const EmployeeInteraction = (props) => {
         {isOpeningAddModal && 
             <EditEmployeeModal onBackdropClick={()=>setOpeningAddModal(false)} setEmployees={props.setEmployees}/>}
         {isOpeningDelModal && 
-            <DeleteEmployeeDialog onBackdropClick={()=>setOpeningDelModal(false)} 
-            checkedID={props.checkedID} setCheckedID={props.setCheckedID}
-            setCheckAll={props.setCheckAll}
+            <DeleteProfileDialog onBackdropClick={()=>setOpeningDelModal(false)} 
+            FullName={props.FullName}
+            EmployeeID={props.EmployeeID}
             setEmployees={props.setEmployees}/>}
     </div>)
 }
