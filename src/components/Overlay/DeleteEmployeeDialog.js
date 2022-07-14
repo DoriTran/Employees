@@ -14,7 +14,7 @@ const DeleteEmployeeDialog = (props) => {
         <Dialog onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()}>
             <div className="dialog-container">
                 <div className="dialog-header">Are you sure to delete all employees selected?</div>
-                <form className="dialog-body" onSubmit={deleteHandler}>
+                <form className="dialog-body">
                     <div className="dialog-message">
                         <div className="dialog-single">All data of these employees will be deleted</div>
                     </div>

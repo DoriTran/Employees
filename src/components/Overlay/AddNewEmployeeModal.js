@@ -51,9 +51,8 @@ const AddNewEmployeeModal = (props) => {
                             Cancel
                     </Button>
                     <Button disabled={false }
-                        variant="contained"
+                        variant="contained" type="submit"
                         style={{backgroundColor:"#ededed", marginLeft:"5px", color:"black"}} 
-                        onClick={() => submitHandler()}
                         >
                             {false ? <CircularProgress size={'25px'}/> :'Submit'}
                     </Button>

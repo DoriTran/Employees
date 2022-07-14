@@ -36,7 +36,7 @@ const AddWorkingModal = (props) => {
                     <Button variant="contained" style={{backgroundColor:"transparent", color:"black"}} onClick={props.onBackdropClick}>
                             Cancel
                     </Button>
-                    <Button variant="contained" style={{backgroundColor:"#ededed", marginLeft:"5px", color:"black"}} onClick={() => submitHandler()}>
+                    <Button variant="contained" style={{backgroundColor:"#ededed", marginLeft:"5px", color:"black"}} type="submit">
                             Confirm
                     </Button>
                 </div>

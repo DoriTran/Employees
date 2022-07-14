@@ -34,7 +34,6 @@ const AddNewTeamModal = (props) => {
                     <Button disabled={false }
                         variant="contained" type="submit"
                         style={{backgroundColor:"#ededed", marginLeft:"5px", color:"black"}} 
-                        onClick={() => submitHandler()}
                         >
                             {false ? <CircularProgress size={'25px'}/> :'Submit'}
                     </Button>

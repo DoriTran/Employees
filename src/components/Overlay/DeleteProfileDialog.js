@@ -28,9 +28,8 @@ const DeleteEmployeeDialog = (props) => {
                         NO
                     </Button>
                     <Button
-                        variant="contained"
+                        variant="contained" type="submit"
                         style={{ backgroundColor: "#ededed", marginLeft: "5px", color: "black" }}
-                        onClick={() => deleteHandler()}
                     >
                         YES
                     </Button>
