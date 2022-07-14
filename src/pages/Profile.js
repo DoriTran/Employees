@@ -18,26 +18,24 @@ const Profile = (props) => {
 
     // For fake data api interact
     useEffect(() => {
-        let employeesThatNotHaveThisProfile = props.employees.filter(employee => employee.EmployeeID !== profile.EmployeeID)
-        props.setEmployees([...employeesThatNotHaveThisProfile, profile])
+        props.setEmployees([...props.employees.filter(employee => employee.EmployeeID !== profile.EmployeeID), profile])
         console.log("useEffect")
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [profile.Working])
+    }, [profile])
 
     return (
         <>
             <Navbar />
             <ProfileInteraction
-                FullName={profile.FullName}
-                EmployeeID={profile.EmployeeID}
+                profile={profile} setProfile={setProfile}
                 setEmployees={props.setEmployees} />
             <div className="profile-container">
                 <AvatarInfo className="left-side" profile={profile} />
                 <div className="right-side">
                     <DetailButtonGroup tab={tab} setTab={setTab} />
                     {tab === "information" && <InfomationTab profile={profile} />}
-                    {tab === "working" && <WorkingTab profile={profile} setProfile={setProfile} />}
-                    {tab === "advances" && <AdvanceTab profile={profile} setProfile={setProfile} />}
+                    {tab === "working" && <WorkingTab profile={profile} setProfile={setProfile} setEmployees={props.setEmployees} />}
+                    {tab === "advances" && <AdvanceTab profile={profile} setProfile={setProfile} setEmployees={props.setEmployees} />}
                 </div>
             </div>
         </>

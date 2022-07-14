@@ -21,7 +21,7 @@ const AddNewEmployeeModal = (props) => {
         Sex: "Male", StartDate: "", Phone: "", Team: "None", Working: [], Advance: []})
     
     return (
-    <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()}>
+    <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()} closeBackgroundColor={"white"}>
         <div className="modal-header">Add new Employee</div>
         <div className="modal-container">
             <form className="modal-body" onSubmit={submitHandler}>
@@ -51,7 +51,7 @@ const AddNewEmployeeModal = (props) => {
                             Cancel
                     </Button>
                     <Button disabled={false }
-                        variant="contained" 
+                        variant="contained"
                         style={{backgroundColor:"#ededed", marginLeft:"5px", color:"black"}} 
                         onClick={() => submitHandler()}
                         >

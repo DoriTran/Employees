@@ -1,6 +1,8 @@
 import "./WorkingTab.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashAlt, faCirclePlus } from "@fortawesome/free-solid-svg-icons"
+import { useState } from "react"
+import AddWorkingModal from "../Overlay/AddWorkingModal"
 
 const WorkingTab = (props) => {
     const deleteHandler = (No) => {
@@ -9,11 +11,13 @@ const WorkingTab = (props) => {
         })
     }
 
+    const [addWorking, setAddWorking] = useState(false)
+
     return (
         <div className="tab-wrapper">
         <div className="tab-header">
             <span className="tab-title">WORKING</span>
-            <FontAwesomeIcon className="tab-add-button" icon={faCirclePlus} />
+            <FontAwesomeIcon className="tab-add-button" icon={faCirclePlus} onClick={() => setAddWorking(true)}/>
         </div>
         <div className="tab-body">
             <table className="tab-table">
@@ -37,6 +41,9 @@ const WorkingTab = (props) => {
                 </tbody>
             </table>
         </div>
+        {addWorking && <AddWorkingModal onBackdropClick={()=>setAddWorking(false)}
+            profile={props.profile} setProfile={props.setProfile}
+            setEmployees={props.setEmployees}/>}
     </div>
     )
 }

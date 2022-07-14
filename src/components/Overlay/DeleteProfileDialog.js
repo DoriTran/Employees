@@ -7,8 +7,7 @@ const DeleteEmployeeDialog = (props) => {
     const navigate = useNavigate()
 
     const deleteHandler = () => {
-        console.log("navigate")
-        props.setEmployees(employees => employees.filter(employee => employee.EmployeeID !== props.EmployeeID))
+        props.setEmployees(employees => employees.filter(employee => employee.EmployeeID !== props.profile.EmployeeID))
         navigate("/employee")
     }
 
@@ -18,7 +17,7 @@ const DeleteEmployeeDialog = (props) => {
                 <div className="dialog-header">Are you sure to delete this employee?</div>
                 <form className="dialog-body" onSubmit={deleteHandler}>
                     <div className="dialog-message">
-                        <div className="dialog-single">All profile data of {props.FullName} will be deleted</div>
+                        <div className="dialog-single">All profile data of {props.profile.FullName} will be deleted</div>
                     </div>
                 </form>
                 <div className="dialog-button-group">
