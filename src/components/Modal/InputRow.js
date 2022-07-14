@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const InputRow = (props) => {
     const handleInput = (event, input) => {
-        return {...input, [props.name]: event.target.value}
+        if (props.name === "notObject") return event.target.value
+        else return {...input, [props.name]: event.target.value}
     }
 
     return (

@@ -25,7 +25,7 @@ const Profile = (props) => {
 
     return (
         <>
-            <Navbar />
+            <Navbar selected="Employee"/>
             <ProfileInteraction
                 profile={profile} setProfile={setProfile}
                 setEmployees={props.setEmployees} />

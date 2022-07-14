@@ -32,7 +32,7 @@ const Employee = (props) => {
 
     return (
         <>
-            <Navbar />
+            <Navbar selected="Employee"/>
             <EmployeeInteraction 
                 checkedID={checkedID} setCheckedID={setCheckedID}
                 setCheckAll={setCheckAll}

@@ -1,13 +1,20 @@
-.customButton {
-    color: #4467ff;
+.selected {
+    color: white;
+    background-color: #007bff !important;
+}
+
+.custom-btn {
     background: rgba(0,0,0,0);
+    padding: 10px;
+    border-radius: 5px;
     border: none;
     text-align: center;
-    width: 80px;
+    width: 100px;
     height: 100%;
 }
 
 .buttonGroup {
     display: flex;
     justify-content: center;
+    gap: 5px;
 }

@@ -1,8 +1,8 @@
-import { Button, Navbar, Container } from "react-bootstrap"
+import { Navbar, Container } from "react-bootstrap"
 import { Link } from "react-router-dom";
 import "./Navbar.scss"
 
-const EmployeeNavbar = () => {
+const EmployeeNavbar = (props) => {
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -14,10 +14,14 @@ const EmployeeNavbar = () => {
 
                     <div className="buttonGroup">
                         <Link to="/employee">
-                            <Button variant="primary" className="mx-2">Employee</Button>
+                            {props.selected === "Employee" ? 
+                            <button className="selected custom-btn">Employee</button> : 
+                            <button className="custom-btn">Employee</button> } 
                         </Link>
                         <Link to="/team">
-                            <button  className="customButton">Team</button> 
+                            {props.selected === "Team" ? 
+                            <button className="selected custom-btn">Team</button> : 
+                            <button className="custom-btn">Team</button> } 
                         </Link>                         
                     </div>
                     
