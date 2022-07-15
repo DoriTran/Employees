@@ -20,20 +20,33 @@ const EditEmployeeModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">
-                        <InputRow name="FullName" required label="Full name employee" value={formInput.FullName} placeholder="Nguyễn Văn A" setInput={setFormInput}/>
+                        <InputRow name="FullName" required label="Full name employee" placeholder="Nguyễn Văn A" 
+                            value={formInput.FullName} setInput={setFormInput} maxLength={255}/>
                         <span style={{textAlign: "right", width: "100%"}}>{formInput.FullName.length}/255</span>
                     </div>
                 </div>
                 <div className="modal-info">
                     <div className="modal-left">       
-                        <InputRow name="Address" required label="Address *" value={formInput.Address} placeholder="123, Cầu Giấy, Hà Nội" setInput={setFormInput}/>    
-                        <InputRow name="Age" required label="Age employee *" value={formInput.Age} placeholder="18" type="number" setInput={setFormInput}/>
-                        <InputRow name="MoneyHour" required label="Money/hour *" value={formInput.MoneyHour} placeholder="1000" type="number" setInput={setFormInput}/>                       
+                        <InputRow name="Address" required label="Address *" placeholder="123, Cầu Giấy, Hà Nội" 
+                            value={formInput.Address} setInput={setFormInput} maxLength={300}/>    
+                        <InputRow name="Age" required label="Age employee *" placeholder="18" type="number" 
+                            value={formInput.Age} setInput={setFormInput}/>
+                        <InputRow name="MoneyHour" required label="Money/hour *"placeholder="1000" type="number" 
+                            value={formInput.MoneyHour} setInput={setFormInput}/>                       
                     </div>
                     <div className="modal-right">
-                        <SelectRow name="Sex" required label="Sex employee *" value={formInput.Sex} placeholder="" options={["Male", "Female"]} setInput={setFormInput}/>
-                        <InputRow name="StartDate" required label="Start day *" value={formInput.StartDate} type="date" setInput={setFormInput}/>
-                        <InputRow name="Phone" required label="Phone number *" value={formInput.Phone} placeholder="0123456789" type="number" setInput={setFormInput}/>
+                        <SelectRow name="Sex" required label="Sex employee *" placeholder="" options={["Male", "Female"]} 
+                            value={formInput.Sex} setInput={setFormInput}/>
+                        <InputRow name="StartDate" required label="Start day *" type="date" 
+                            value={formInput.StartDate} setInput={setFormInput}/>
+                        <InputRow name="Phone" required label="Phone number *" placeholder="0123456789" regex="^([+]|[0-9]){0,1}[0-9]{0,12}$"
+                            value={formInput.Phone} setInput={setFormInput} maxLength={12}/>
+                    </div>
+                </div>
+                <div className="modal-info">
+                    <div className="modal-single">
+                        <SelectRow name="Team" required label="Team *" options={props.teams} 
+                                    value={formInput.Team} setInput={setFormInput}/>
                     </div>
                 </div>
                 <div className="modal-button-group">

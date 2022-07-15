@@ -19,7 +19,7 @@ const AddAdvanceModal = (props) => {
 
     const [formInput, setFormInput] = useState(() => {
         let allNoAdvance = props.profile.Advance.map(advance => advance.No)
-        return {No: Math.max(...allNoAdvance) + 1, Date: "", Money: 0 }
+        return {No: Math.max(...allNoAdvance) + 1, Date: new Date().toISOString().substring(0, 10), Money: "0$" }
     })
     
     return (
@@ -29,8 +29,10 @@ const AddAdvanceModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">
-                        <InputRow name="Date" required label="Date *" type="date" setInput={setFormInput}/>    
-                        <InputRow name="Money" required label="Money *" type="number" setInput={setFormInput}/>                    
+                        <InputRow name="Date" required label="Date *" type="date" 
+                            value={formInput.Date} setInput={setFormInput}/>    
+                        <InputRow name="Money" required label="Money *" 
+                            value={formInput.Money} setInput={setFormInput} regex="^[0-9]*([0-9]|[$]){0,1}$"/>                    
                     </div>
                 </div>
                 <div className="modal-button-group">

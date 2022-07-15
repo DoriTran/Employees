@@ -19,7 +19,8 @@ const AddNewTeamModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">
-                        <InputRow name="notObject" required label="Team Name" placeholder="Engineer" setInput={setNewTeam}/>
+                        <InputRow name="notObject" required label="Team Name" placeholder="Engineer" 
+                            value={newTeam} setInput={setNewTeam} maxLength={255}/>
                         <span style={{textAlign: "right", width: "100%"}}>{newTeam.length}/255</span>
                     </div>
                 </div>

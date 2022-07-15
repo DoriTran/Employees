@@ -7,6 +7,7 @@ const DeleteEmployeeDialog = (props) => {
     const navigate = useNavigate()
 
     const deleteHandler = () => {
+
         props.setEmployees(employees => employees.filter(employee => employee.EmployeeID !== props.profile.EmployeeID))
         navigate("/employee")
     }
@@ -15,7 +16,7 @@ const DeleteEmployeeDialog = (props) => {
         <Dialog onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()}>
             <div className="dialog-container">
                 <div className="dialog-header">Are you sure to delete this employee?</div>
-                <form className="dialog-body" onSubmit={deleteHandler}>
+                <form className="dialog-body">
                     <div className="dialog-message">
                         <div className="dialog-single">All profile data of {props.profile.FullName} will be deleted</div>
                     </div>
@@ -28,7 +29,7 @@ const DeleteEmployeeDialog = (props) => {
                         NO
                     </Button>
                     <Button
-                        variant="contained" type="submit"
+                        variant="contained" onClick={() => deleteHandler()}
                         style={{ backgroundColor: "#ededed", marginLeft: "5px", color: "black" }}
                     >
                         YES

@@ -35,6 +35,7 @@ const Employee = (props) => {
             <Navbar selected="Employee"/>
             <EmployeeInteraction 
                 checkedID={checkedID} setCheckedID={setCheckedID}
+                teams={props.teams}
                 setCheckAll={setCheckAll}
                 setEmployees={props.setEmployees} />
             <Searcbar setSearchKey={setSearchKey} total={searchResult.length} />

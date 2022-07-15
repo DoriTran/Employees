@@ -27,7 +27,7 @@ const Profile = (props) => {
         <>
             <Navbar selected="Employee"/>
             <ProfileInteraction
-                profile={profile} setProfile={setProfile}
+                profile={profile} setProfile={setProfile} teams={props.teams}
                 setEmployees={props.setEmployees} />
             <div className="profile-container">
                 <AvatarInfo className="left-side" profile={profile} />

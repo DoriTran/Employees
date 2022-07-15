@@ -18,7 +18,7 @@ const AddWorkingModal = (props) => {
 
     const [formInput, setFormInput] = useState(() => {
         let allNoWorking = props.profile.Working.map(working => working.No)
-        return {No: Math.max(...allNoWorking) + 1, Date: "", Hour: 0 }
+        return {No: Math.max(...allNoWorking) + 1, Date: new Date().toISOString().substring(0, 10), Hour: "0" }
     })
     
     return (
@@ -28,8 +28,10 @@ const AddWorkingModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">       
-                        <InputRow name="Date" required label="Date *" type="date" setInput={setFormInput}/>    
-                        <InputRow name="Hour" required label="Hour *" type="number" setInput={setFormInput}/>                    
+                        <InputRow name="Date" required label="Date *" type="date" 
+                            value={formInput.Date} setInput={setFormInput}/>    
+                        <InputRow name="Hour" required label="Hour *" TYPE="number"
+                            value={formInput.Hour} setInput={setFormInput} regex="(^[1-9]{0,1}$)|(^[1][0-9]$)|(^[2][0-4]$)"/>                    
                     </div>
                 </div>
                 <div className="modal-button-group">

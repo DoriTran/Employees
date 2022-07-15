@@ -18,7 +18,7 @@ const EmployeeInteraction = (props) => {
         </div>
         {isOpeningEditModal && 
             <EditEmployeeModal onBackdropClick={()=>setOpeningEditModal(false)} 
-            profile={props.profile} setProfile={props.setProfile}
+            profile={props.profile} setProfile={props.setProfile} teams={props.teams}
             setEmployees={props.setEmployees}/>}
         {isOpeningDelModal && 
             <DeleteProfileDialog onBackdropClick={()=>setOpeningDelModal(false)} 

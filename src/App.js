@@ -50,8 +50,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="employee" element={<Employee employees={employees} setEmployees={setEmployees}/>} />
-        <Route path="profile/id=:EmployeeID" element={<Profile employees={employees} setEmployees={setEmployees}></Profile>} />
+        <Route path="employee" element={<Employee employees={employees} setEmployees={setEmployees} teams={teams}/>} />
+        <Route path="profile/id=:EmployeeID" element={<Profile employees={employees} setEmployees={setEmployees} teams={teams}></Profile>} />
         <Route path="team" element={<Team teams={teams} setTeams={setTeams} employees={employees}/>} />
         <Route path="*" element={<Navigate replace to='/employee' />} />
       </Routes>

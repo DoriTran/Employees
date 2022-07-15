@@ -1,7 +1,6 @@
 import "./SelectRow.scss"
-import { forwardRef } from "react"
 
-const SelectRow = forwardRef((props, ref) => {
+const SelectRow = (props) => {
     const handleInput = (event, input) => {
         return {...input, [props.name]: event.target.value}
     }
@@ -10,12 +9,17 @@ const SelectRow = forwardRef((props, ref) => {
         <div className="main">
             <span>{props.label}</span>
             <select
+                value={props.value}
                 name={props.name}
-                ref={ref}
+
+                defaultValue={props.defaultValue}
+
                 required = {props.required}
+
                 disabled={props.disabled}
+
                 onChange={event => props.setInput(input => handleInput(event, input))}
-                defaultValue={props.defaultValue} >
+                 >
                 { props.options.map((option, index) => (
                     <option key={index} value={option}>{option}</option>
                 ))}    
@@ -23,6 +27,6 @@ const SelectRow = forwardRef((props, ref) => {
             
         </div>
     )
-})
+}
 
 export default SelectRow
