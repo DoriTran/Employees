@@ -11,6 +11,7 @@ import DetailButtonGroup from "../components/Profile/DetailButtonGroup"
 import InfomationTab from "../components/Profile/InformationTab"
 import WorkingTab from "../components/Profile/WorkingTab"
 import AdvanceTab from "../components/Profile/AdvanceTab"
+import StatisticTab from "../components/Profile/StatisticTab"
 import { CircularProgress } from "@mui/material"
 
 import getEmployeeByNo from "../api-calls/employee/getEmployeeByNo";
@@ -41,6 +42,7 @@ const Profile = (props) => {
                         {tab === "information" && <InfomationTab profile={formattedProfile} teamName={teams.filter(team => team.teamNo === profile.data.teamNo)[0].teamName}/>}
                         {tab === "working" && <WorkingTab employeeNo={formattedProfile.no} />}
                         {tab === "advances" && <AdvanceTab employeeNo={formattedProfile.no} />}
+                        {tab === "statistics" && <StatisticTab employeeNo={formattedProfile.no} />}
                     </div>
                 </div>
             </>
