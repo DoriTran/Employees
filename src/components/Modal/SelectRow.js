@@ -20,9 +20,10 @@ const SelectRow = (props) => {
 
                 onChange={event => props.setInput(input => handleInput(event, input))}
                  >
-                { props.options.map((option, index) => (
-                    <option key={index} value={option}>{option}</option>
-                ))}    
+                { props.realOptions !== undefined ? 
+                    props.realOptions.map(op => (<option key={op.value} value={op.value}>{op.option}</option>)):
+                    props.options.map((option, index) => (<option key={index} value={option}>{option}</option>))
+                }    
             </select>
             
         </div>

@@ -17,12 +17,12 @@ const EmployeeInteraction = (props) => {
             <button className="interactButton" onClick={()=>setOpeningDelModal(true)}><FontAwesomeIcon icon={faTrashAlt} /></button>
         </div>
         {isOpeningAddModal && 
-            <AddNewEmployeeModal onBackdropClick={()=>setOpeningAddModal(false)} setEmployees={props.setEmployees} teams={props.teams}/>}
+            <AddNewEmployeeModal onBackdropClick={()=>setOpeningAddModal(false)} teams={props.teams} refetch={props.refetch}/>}
         {isOpeningDelModal && 
             <DeleteEmployeeDialog onBackdropClick={()=>setOpeningDelModal(false)} 
-            checkedID={props.checkedID} setCheckedID={props.setCheckedID}
+            checkedID={props.checkedID} setCheckedID={props.setCheckedID} 
             setCheckAll={props.setCheckAll}
-            setEmployees={props.setEmployees}/>}
+            refetch={props.refetch}/>}
     </div>)
 }
 

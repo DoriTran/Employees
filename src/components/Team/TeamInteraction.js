@@ -12,7 +12,7 @@ const TeamInteraction = (props) => {
         <h3 className="nameDisplay">Team</h3>
         <button className="add-team-btn" onClick={()=>setOpeningAddModal(true)}><FontAwesomeIcon icon={faCirclePlus} /></button>
         {isOpeningAddModal && 
-            <AddNewTeamModal onBackdropClick={()=>setOpeningAddModal(false)} setTeams={props.setTeams}/>}
+            <AddNewTeamModal onBackdropClick={()=>setOpeningAddModal(false)} setTeams={props.setTeams} refetch={props.refetch}/>}
     </div>)
 }
 

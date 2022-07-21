@@ -8,7 +8,7 @@ const EmployeeNavbar = (props) => {
             <Navbar bg="light" expand="lg">
                 <Container fluid>                        
                     <Navbar.Brand href="">
-                        <img src="/Logo.png" alt="Employee Logo"></img>
+                        <img src={require("./Logo.png") } alt="Employee Logo"></img>
                         Employee Manager
                     </Navbar.Brand>    
 

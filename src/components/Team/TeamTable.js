@@ -3,6 +3,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAddressCard } from "@fortawesome/free-solid-svg-icons"
 
 const TeamTable = (props) => {
+    let compare = (a,b) => {
+        if (a.teamNo > b.teamNo) return 1;
+        else if (a.teamNo < b.teamNo) return -1;
+        else return 0;
+    }
+
+    let sortedTeam = props.teams
+    sortedTeam.sort(compare)
+
     return (
         <div className="team-table-container">
             <h3 className="team-table-header">Total {props.teams.length} teams</h3>
@@ -14,12 +23,12 @@ const TeamTable = (props) => {
                         <th>Detail</th>
                     </tr>
                     {
-                        props.teams.map((team, index) => (
-                            <tr key={index}>
-                                <td>{index + 1}</td>
-                                <td>{team}</td>
+                        sortedTeam.map(team => (
+                            <tr key={team.teamNo}>
+                                <td>{team.teamNo}</td>
+                                <td>{team.teamName}</td>
                                 <td>
-                                    <FontAwesomeIcon className="delete-button" icon={faAddressCard} onClick={() => props.setTeamName(team)} />
+                                    <FontAwesomeIcon className="delete-button" icon={faAddressCard} onClick={() => props.setTeamNo(team.teamNo)} />
                                 </td>
                             </tr>)
                         )

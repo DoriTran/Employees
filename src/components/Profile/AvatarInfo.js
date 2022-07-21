@@ -9,13 +9,13 @@ const PillInfo = (props) => {
 const AvatarInfo = (props) => {
     return (
         <div className="avatar-wrapper">
-            <img src={props.profile.Sex === "Female" ? "/DefaultWomanAvatar.png" : "/DefaultManAvatar.png"} alt="Avatar" className="avatar-img"></img>
+            <img src={props.profile.sex === "Female" ? require("./Default Avatar/DefaultWomanAvatar.png") : require("./Default Avatar/DefaultManAvatar.png")} alt="Avatar" className="avatar-img"></img>
             <div className="pill-row">
-                <PillInfo keyInfo={"No"} value={props.profile.EmployeeID} backgroundColor="#007bff" color="white" />
-                <PillInfo keyInfo="Age" value={props.profile.Age} backgroundColor="#17a2b8" color="white" />    
+                <PillInfo keyInfo={"No"} value={props.profile.no} backgroundColor="#007bff" color="white" />
+                <PillInfo keyInfo="Age" value={props.profile.age} backgroundColor="#17a2b8" color="white" />    
             </div>
             <div className="pill-row">
-                <PillInfo keyInfo="Sex" value={props.profile.Sex} backgroundColor="#ffc107" color="black" />
+                <PillInfo keyInfo="Sex" value={props.profile.sex} backgroundColor="#ffc107" color="black" />
             </div>
         </div>
 

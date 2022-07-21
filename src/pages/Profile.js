@@ -4,42 +4,48 @@ import Navbar from "../components/Navbar/Navbar"
 import ProfileInteraction from "../components/Profile/ProfileInteraction"
 import AvatarInfo from "../components/Profile/AvatarInfo"
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useQuery } from "react-query"
 import DetailButtonGroup from "../components/Profile/DetailButtonGroup"
 import InfomationTab from "../components/Profile/InformationTab"
 import WorkingTab from "../components/Profile/WorkingTab"
 import AdvanceTab from "../components/Profile/AdvanceTab"
+import { CircularProgress } from "@mui/material"
+
+import getEmployeeByNo from "../api-calls/employee/getEmployeeByNo";
+import getAllTeams from "../api-calls/team/getAllTeam";
 
 const Profile = (props) => {
     const { EmployeeID } = useParams()
-    const [profile, setProfile] = useState(props.employees.find(employee => employee.EmployeeID === EmployeeID))
+    const { isLoading: isProfileLoading, isError: isProfileError, refetch : refetchProfile, data: profile } = useQuery('getAllEmployeeByNo', () => getEmployeeByNo(EmployeeID))
+    const { isLoading: isTeamLoading, isError: isTeamError, data: teams } = useQuery('getAllTeam', getAllTeams)
     const [tab, setTab] = useState("information")
 
-    // For fake data api interact
-    useEffect(() => {
-        props.setEmployees([...props.employees.filter(employee => employee.EmployeeID !== profile.EmployeeID), profile])
-        console.log("useEffect")
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [profile])
-
-    return (
-        <>
-            <Navbar selected="Employee"/>
-            <ProfileInteraction
-                profile={profile} setProfile={setProfile} teams={props.teams}
-                setEmployees={props.setEmployees} />
-            <div className="profile-container">
-                <AvatarInfo className="left-side" profile={profile} />
-                <div className="right-side">
-                    <DetailButtonGroup tab={tab} setTab={setTab} />
-                    {tab === "information" && <InfomationTab profile={profile} />}
-                    {tab === "working" && <WorkingTab profile={profile} setProfile={setProfile} setEmployees={props.setEmployees} />}
-                    {tab === "advances" && <AdvanceTab profile={profile} setProfile={setProfile} setEmployees={props.setEmployees} />}
+    // Query
+    if (isProfileLoading || isTeamLoading) {
+        return <CircularProgress size={"25px"} />
+    } else if (isProfileError || isTeamError) {
+        return <span style={{color: 'red'}}>Error loading profile data</span>
+    } else {
+        let formattedProfile = profile.data;
+        formattedProfile.startDate = formattedProfile.startDate.slice(0, 10)
+        return (
+            <>
+                <Navbar selected="Employee"/>
+                <ProfileInteraction profile={formattedProfile} teams={teams} no={EmployeeID} refetch={refetchProfile}/>
+                <div className="profile-container">
+                    <AvatarInfo className="left-side" profile={formattedProfile} />
+                    <div className="right-side">
+                        <DetailButtonGroup tab={tab} setTab={setTab} />
+                        {tab === "information" && <InfomationTab profile={formattedProfile} teamName={teams.filter(team => team.teamNo === profile.data.teamNo)[0].teamName}/>}
+                        {tab === "working" && <WorkingTab employeeNo={formattedProfile.no} />}
+                        {tab === "advances" && <AdvanceTab employeeNo={formattedProfile.no} />}
+                    </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    }
 }
 
 export default Profile;

@@ -6,12 +6,17 @@ const InputRow = (props) => {
         if (props.regex === undefined ||
             (props.regex !== undefined && new RegExp(props.regex).test(event.target.value))) {
 
+            let finalInput = event.target.value
+            if (props.handleInput !== undefined) {
+                finalInput = props.handleInput(finalInput)
+            }
+
             if (props.name === "notObject") {
-                props.setInput(event.target.value)
+                props.setInput(finalInput)
             }
             else {
                 props.setInput(formInput => {
-                    return { ...formInput, [props.name]: event.target.value }
+                    return { ...formInput, [props.name]: finalInput }
                 })
             }
         }

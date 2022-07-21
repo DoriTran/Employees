@@ -4,20 +4,20 @@ import { faInfo, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom";
 
 const SearchResult = (props) => {
-    const deleteHandler = (EmployeeID) => {
-        props.setCheckedID(prevCheckedIDs => prevCheckedIDs.filter(prevCheckedID => prevCheckedID !== EmployeeID))
-        props.setEmployees(prevEmployees => prevEmployees.filter(prevEmployee => prevEmployee.EmployeeID !== EmployeeID))
+    const deleteHandler = (EmployeeNo) => {
+        props.setCheckedID(prevCheckedIDs => prevCheckedIDs.filter(prevCheckedID => prevCheckedID !== EmployeeNo))
+        // Call api deleting
     }
 
     const handleCheckAll = () => {
         props.setCheckAll(!props.checkAll);
-        let PageEmployeeID = props.employees.map(employee => employee.EmployeeID)
+        let PageEmployeeNo = props.employees.map(employee => employee.no)
 
         if (!props.checkAll) {
-            let newCheckedIDs = PageEmployeeID.filter(checked => !props.checkedID.includes(checked))
-            props.setCheckedID(prev => [...prev, ...newCheckedIDs])
+            let newCheckedNos = PageEmployeeNo.filter(checked => !props.checkedID.includes(checked))
+            props.setCheckedID(prev => [...prev, ...newCheckedNos])
         } else {
-            props.setCheckedID(prev => prev.filter(checked => !PageEmployeeID.includes(checked)))
+            props.setCheckedID(prev => prev.filter(checked => !PageEmployeeNo.includes(checked)))
         }
     }
 
@@ -47,16 +47,16 @@ const SearchResult = (props) => {
                     props.employees.map((employee, index) => (
                         <tr key={index}>
                             <td><input type="checkbox" 
-                                checked={props.checkedID.includes(employee.EmployeeID)} 
-                                onChange={() => handleCheck(employee.EmployeeID)}/></td>                            
-                            <td>{(props.page - 1) * 10 + index + 1}</td>
-                            <td>{employee.FullName}</td>
-                            <td>{employee.Phone}</td>
-                            <td>{employee.Team}</td>
+                                checked={props.checkedID.includes(employee.no)} 
+                                onChange={() => handleCheck(employee.no)}/></td>                            
+                            <td>{employee.no}</td>
+                            <td>{employee.fullName}</td>
+                            <td>{employee.phone}</td>
+                            <td>{props.teams.filter(team => team.teamNo === employee.teamNo)[0].teamName}</td>
                             <td>
                                 <div className="option-wrapper">
-                                    <Link to={`/profile/id=${employee.EmployeeID}`}><FontAwesomeIcon className="info-button" icon={faInfo} /></Link>
-                                    <FontAwesomeIcon className="delete-button" icon={faTrashAlt} onClick={() => deleteHandler(employee.EmployeeID)}/>
+                                    <Link to={`/profile/id=${employee.no}`}><FontAwesomeIcon className="info-button" icon={faInfo} /></Link>
+                                    <FontAwesomeIcon className="delete-button" icon={faTrashAlt} onClick={() => deleteHandler(employee.no)}/>
                                 </div>
                             </td>
                         </tr>)

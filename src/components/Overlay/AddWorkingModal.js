@@ -2,24 +2,31 @@ import "./AddNewEmployeeModal.scss"
 import { Button } from "@mui/material"
 import Modal from '../Modal/Modal'
 import InputRow from "../Modal/InputRow"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useMutation } from "react-query"
+import addNewWorkingByEmployeeNo from "../../api-calls/working/addNewWorkingByEmployeeNo"
 
 const AddWorkingModal = (props) => {
-    const submitHandler = () => {
-        props.onBackdropClick()
-
-        props.setProfile(preProfile => {
-            return {...preProfile, Working: [...preProfile.Working, formInput]} 
-        })
-        props.setEmployees(employees => {
-            return [...employees.filter(employee => employee.EmployeeID !== props.profile.EmployeeID), props.profile]
-        })
-    }
-
+    // Form control
     const [formInput, setFormInput] = useState(() => {
-        let allNoWorking = props.profile.Working.map(working => working.No)
-        return {No: Math.max(...allNoWorking) + 1, Date: new Date().toISOString().substring(0, 10), Hour: "0" }
+        return {date: new Date().toISOString().substring(0, 10), hour: "0", employeeNo: props.no }
     })
+
+    // Submit handler
+    const mutateNewWorking = useMutation(addNewWorkingByEmployeeNo)
+
+    useEffect(()=>{
+        if (mutateNewWorking.isSuccess){
+            props.onBackdropClick()
+            props.refetch()
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateNewWorking.isSuccess])
+    
+    const submitHandler = e => {
+        e.preventDefault()
+        mutateNewWorking.mutate(formInput)
+    }
     
     return (
     <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()} closeBackgroundColor={"white"}>
@@ -28,10 +35,13 @@ const AddWorkingModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">       
-                        <InputRow name="Date" required label="Date *" type="date" 
-                            value={formInput.Date} setInput={setFormInput}/>    
-                        <InputRow name="Hour" required label="Hour *" TYPE="number"
-                            value={formInput.Hour} setInput={setFormInput} regex="(^[1-9]{0,1}$)|(^[1][0-9]$)|(^[2][0-4]$)"/>                    
+                        <InputRow name="date" required label="Date *" type="date" 
+                            value={formInput.date} setInput={setFormInput}/>    
+                        <InputRow name="hour" required label="Hour *" type="number"
+                            value={formInput.hour} setInput={setFormInput} handleInput={input => {
+                                if (input > 24) return 24
+                                else return input
+                            }}/>                    
                     </div>
                 </div>
                 <div className="modal-button-group">

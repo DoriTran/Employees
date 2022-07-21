@@ -39,6 +39,9 @@ table.team-detail {
 
         td:nth-child(4), th:nth-child(4) {
             width: 20%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         td:nth-child(5), th:nth-child(5) {

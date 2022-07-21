@@ -2,13 +2,28 @@ import "./DeleteEmployeeDialog.scss"
 import { Button } from "@mui/material"
 import Dialog from '../Dialog/Dialog'
 
+import { useEffect } from "react"
+import { useMutation } from "react-query"
+
+import deleteSelectedEmployee from "../../api-calls/employee/deleteSelectedEmployee"
+
 const DeleteEmployeeDialog = (props) => {
+    // Delete handler
+    const mutateDeleteSelectedEmployee = useMutation(deleteSelectedEmployee)
+
+    useEffect(() => {
+        if (mutateDeleteSelectedEmployee.isSuccess) {
+            props.refetch()
+            props.onBackdropClick()
+            props.setCheckedID([])
+            props.setCheckAll(false)
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateDeleteSelectedEmployee.isSuccess])
+
     const deleteHandler = () => {
-        props.onBackdropClick()
-        props.setCheckedID([])
-        props.setCheckAll(false)
-        props.setEmployees(prev => prev.filter(employee => !props.checkedID.includes(employee.EmployeeID)))
-    }
+        mutateDeleteSelectedEmployee.mutate(props.checkedID)
+    }    
 
     return (
         <Dialog onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()}>

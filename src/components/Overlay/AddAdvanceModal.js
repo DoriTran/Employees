@@ -2,25 +2,34 @@ import "./AddNewEmployeeModal.scss"
 import { Button } from "@mui/material"
 import Modal from '../Modal/Modal'
 import InputRow from "../Modal/InputRow"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useMutation } from "react-query"
+import addNewAdvanceByEmployeeNo from "../../api-calls/advance/addNewAdvanceByEmployeeNo"
 
 const AddAdvanceModal = (props) => {
-    const submitHandler = () => {
-        props.onBackdropClick()
-
-        props.setProfile(preProfile => {
-            formInput.Money = formInput.Money + "$"
-            return {...preProfile, Advance: [...preProfile.Advance, formInput]} 
-        })
-        props.setEmployees(employees => {
-            return [...employees.filter(employee => employee.EmployeeID !== props.profile.EmployeeID), props.profile]
-        })
-    }
-
+    // Form control
     const [formInput, setFormInput] = useState(() => {
-        let allNoAdvance = props.profile.Advance.map(advance => advance.No)
-        return {No: Math.max(...allNoAdvance) + 1, Date: new Date().toISOString().substring(0, 10), Money: "0$" }
+        return {date: new Date().toISOString().substring(0, 10), money: "0$", employeeNo: props.no }
     })
+
+    // Submit handler
+    const mutateNewAdvance = useMutation(addNewAdvanceByEmployeeNo)
+
+    useEffect(()=>{
+        if (mutateNewAdvance.isSuccess){
+            props.onBackdropClick()
+            props.refetch()
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateNewAdvance.isSuccess])
+    
+    const submitHandler = e => {
+        e.preventDefault()
+        if (!formInput.money.endsWith("$")) {
+            mutateNewAdvance.mutate({...formInput, money: formInput.money + "$"})
+        }
+        else mutateNewAdvance.mutate(formInput)
+    }
     
     return (
     <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()} closeBackgroundColor={"white"}>
@@ -29,10 +38,10 @@ const AddAdvanceModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">
-                        <InputRow name="Date" required label="Date *" type="date" 
-                            value={formInput.Date} setInput={setFormInput}/>    
-                        <InputRow name="Money" required label="Money *" 
-                            value={formInput.Money} setInput={setFormInput} regex="^[0-9]*([0-9]|[$]){0,1}$"/>                    
+                        <InputRow name="date" required label="Date *" type="date" 
+                            value={formInput.date} setInput={setFormInput}/>    
+                        <InputRow name="money" required label="Money *" 
+                            value={formInput.money} setInput={setFormInput} regex="^[0-9]*([0-9]|[$]){0,1}$"/>                    
                     </div>
                 </div>
                 <div className="modal-button-group">

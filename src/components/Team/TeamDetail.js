@@ -17,13 +17,13 @@ const TeamDetail = (props) => {
                         <th>Sex</th>
                     </tr>
                     {
-                        props.teamMembers.map((member, index) => (
-                            <tr key={index}  >
-                                <td>{member.EmployeeID}</td>
-                                <td className="member-hover" onClick={() => navigate("/profile/id=" + member.EmployeeID)}>{member.FullName}</td>
-                                <td>{member.Phone}</td>
-                                <td>{member.Address}</td>
-                                <td>{member.Sex}</td>
+                        props.teamMembers.map(member => (
+                            <tr key={member.no}  >
+                                <td>{member.no}</td>
+                                <td className="member-hover" onClick={() => navigate("/profile/id=" + member.no)}>{member.fullName}</td>
+                                <td>{member.phone}</td>
+                                <td>{member.address}</td>
+                                <td>{member.sex}</td>
                             </tr>)
                         )
                     }

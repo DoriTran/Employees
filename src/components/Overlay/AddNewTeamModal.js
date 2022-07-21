@@ -2,16 +2,30 @@ import "./AddNewEmployeeModal.scss"
 import { Button, CircularProgress } from "@mui/material"
 import Modal from '../Modal/Modal'
 import InputRow from "../Modal/InputRow"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useMutation } from "react-query"
+import addNewTeam from "../../api-calls/team/addNewTeam"
 
 const AddNewTeamModal = (props) => {
+    // Form control
+    const [newTeam, setNewTeam] = useState("")
+
+    // Submit handler
+    const mutateNewTeam = useMutation(addNewTeam)
+
+    useEffect(() => {
+        if (mutateNewTeam.isSuccess) {
+            props.onBackdropClick()
+            props.refetch()
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateNewTeam.isSuccess])
+
     const submitHandler = () => {
-        props.onBackdropClick()
-        props.setTeams(teams => [...teams, newTeam])
+        mutateNewTeam.mutate(newTeam)
     }
 
-    const [newTeam, setNewTeam] = useState("")
-    
+    // Return
     return (
     <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()} closeBackgroundColor={"white"}>
         <div className="modal-header">Add new Employee</div>
