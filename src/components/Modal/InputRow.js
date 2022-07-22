@@ -25,7 +25,7 @@ const InputRow = (props) => {
     return (
         <div className="main">
             {props.icon && <FontAwesomeIcon className="icon" icon={props.icon} />}
-            <span>{props.label}</span>
+            <span>{props.label}<span style={{ color: "red"}}>{props.warning}</span></span>
             <input
                 type={props.type}
 

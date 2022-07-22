@@ -23,9 +23,31 @@ const AddWorkingModal = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mutateNewWorking.isSuccess])
     
+    const [warningDate, setWarningDate] = useState("")
+    const [warningHour, setWarningHour] = useState("")
+
+    const validateInput = () => {
+        let valid = true
+        if (props.isDateExists(formInput.date)) {
+            setWarningDate(" Working date exists")
+            valid = false
+        }
+        else setWarningDate("")
+            
+        if (formInput.hour <= 0) {
+            setWarningHour(" Hour must be greater than zero")
+            valid = false
+        }
+        else setWarningHour("")
+           
+        return valid
+    }
+
     const submitHandler = e => {
         e.preventDefault()
-        mutateNewWorking.mutate(formInput)
+        // Validate
+        if (validateInput())
+            mutateNewWorking.mutate(formInput)
     }
     
     return (
@@ -35,9 +57,9 @@ const AddWorkingModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">       
-                        <InputRow name="date" required label="Date *" type="date" 
+                        <InputRow name="date" required label="Date *" type="date" warning={warningDate}
                             value={formInput.date} setInput={setFormInput}/>    
-                        <InputRow name="hour" required label="Hour *" type="number"
+                        <InputRow name="hour" required label="Hour *" type="number" warning={warningHour}
                             value={formInput.hour} setInput={setFormInput} handleInput={input => {
                                 if (input > 24) return 24
                                 else return input

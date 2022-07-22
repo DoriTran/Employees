@@ -22,13 +22,29 @@ const AddAdvanceModal = (props) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [mutateNewAdvance.isSuccess])
-    
+
+    const [warningDate, setWarningDate] = useState("")
+
+    const validateInput = () => {
+        let valid = true
+        if (props.isDateExists(formInput.date)) {
+            setWarningDate(" Working date exists")
+            valid = false
+        }
+        else setWarningDate("")
+           
+        return valid
+    }
+
     const submitHandler = e => {
         e.preventDefault()
-        if (!formInput.money.endsWith("$")) {
-            mutateNewAdvance.mutate({...formInput, money: formInput.money + "$"})
+        // Validate
+        if (validateInput()) {
+            if (!formInput.money.endsWith("$")) {
+                mutateNewAdvance.mutate({...formInput, money: formInput.money + "$"})
+            }
+            else mutateNewAdvance.mutate(formInput)
         }
-        else mutateNewAdvance.mutate(formInput)
     }
     
     return (
@@ -38,7 +54,7 @@ const AddAdvanceModal = (props) => {
             <form className="modal-body" onSubmit={submitHandler}>
                 <div className="modal-info">
                     <div className="modal-single">
-                        <InputRow name="date" required label="Date *" type="date" 
+                        <InputRow name="date" required label="Date *" type="date" warning={warningDate}
                             value={formInput.date} setInput={setFormInput}/>    
                         <InputRow name="money" required label="Money *" 
                             value={formInput.money} setInput={setFormInput} regex="^[0-9]*([0-9]|[$]){0,1}$"/>                    

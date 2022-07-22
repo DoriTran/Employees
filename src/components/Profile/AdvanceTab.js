@@ -16,11 +16,11 @@ const WorkingTab = (props) => {
     useEffect(() => {
         if (mutateDeleteAdvance.isSuccess)
             refetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[mutateDeleteAdvance.isSuccess])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateDeleteAdvance.isSuccess])
 
     const deleteHandler = (AdvanceNo) => {
-        mutateDeleteAdvance.mutate({employeeNo: props.employeeNo, advanceNo: AdvanceNo})
+        mutateDeleteAdvance.mutate({ employeeNo: props.employeeNo, advanceNo: AdvanceNo })
     }
 
     // Query handler
@@ -28,6 +28,11 @@ const WorkingTab = (props) => {
 
     // State
     const [addAdvance, setAddAdvance] = useState(false)
+
+    // Support
+    const isDateExists = (date) => {
+        return (advances.filter(advance => advance.date === date).length !== 0)
+    }
 
     // Return
     if (isLoading) {
@@ -54,7 +59,7 @@ const WorkingTab = (props) => {
                                 advances.map(advance => (
                                     <tr key={advance.advanceNo}>
                                         <td>{advance.advanceNo}</td>
-                                        <td>{advance.date.slice(0,10)}</td>
+                                        <td>{advance.date}</td>
                                         <td>{advance.money}</td>
                                         <td><FontAwesomeIcon className="delete-button" icon={faTrashAlt} onClick={() => deleteHandler(advance.advanceNo)} /></td>
                                     </tr>)
@@ -63,8 +68,8 @@ const WorkingTab = (props) => {
                         </tbody>
                     </table>
                 </div>
-                {addAdvance && <AddAdvanceModal onBackdropClick={() => setAddAdvance(false)}
-                    no={props.employeeNo} refetch={refetch}/>}
+                {addAdvance && <AddAdvanceModal onBackdropClick={() => setAddAdvance(false)} isDateExists={isDateExists}
+                    no={props.employeeNo} refetch={refetch} />}
             </div>
         )
     }

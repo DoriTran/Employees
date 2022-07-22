@@ -29,6 +29,11 @@ const WorkingTab = (props) => {
     // State
     const [addWorking, setAddWorking] = useState(false)
 
+    // Support
+    const isDateExists = (date) => {
+        return (workings.filter(working => working.date === date).length !== 0)
+    }
+
     // Return
     if (isLoading) {
         return <CircularProgress size={"25px"} />
@@ -54,7 +59,7 @@ const WorkingTab = (props) => {
                                 workings.map(working => (
                                     <tr key={working.workingNo}>
                                         <td>{working.workingNo}</td>
-                                        <td>{working.date.slice(0,10)}</td>
+                                        <td>{working.date}</td>
                                         <td>{working.hour}</td>
                                         <td><FontAwesomeIcon className="delete-button" icon={faTrashAlt} onClick={() => deleteHandler(working.workingNo)} /></td>
                                     </tr>)
@@ -63,7 +68,7 @@ const WorkingTab = (props) => {
                         </tbody>
                     </table>
                 </div>
-                {addWorking && <AddWorkingModal onBackdropClick={() => setAddWorking(false)}
+                {addWorking && <AddWorkingModal onBackdropClick={() => setAddWorking(false)} isDateExists={isDateExists}
                  no={props.employeeNo} refetch={refetch}/>}
             </div>
         )

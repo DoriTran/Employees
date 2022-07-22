@@ -18,7 +18,6 @@ const InfomationTab = (props) => {
     } else if (isWorkingError || isAdvanceError) {
         return <span style={{ color: 'red' }}>Error loading advance data</span>
     } else {
-        console.log(advances)
         return (
             <div className="tab-wrapper">
                 <div className="tab-header">STATISTICS</div>

@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const addNewAdvanceByEmployeeNo = async(formData) => {
     let res = null
-    console.log(formData)
     try {
         res = await axios({
             method: 'post',

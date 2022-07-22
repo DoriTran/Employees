@@ -10,7 +10,6 @@ const addNewEmployee = async(formData) => {
             url: API_URL + 'profile/avatar/employeeNo=' + formData.no,
             data: {file: formData.file}
         })
-        console.log("res" + res)
         return res.data
     } catch (err) {
         throw(alert(new Error(err.response.data.message)))

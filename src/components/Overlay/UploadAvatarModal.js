@@ -23,11 +23,8 @@ const UploadAvatarModal = (props) => {
     
     const submitHandler = e => {
         e.preventDefault()
-        console.log({file: avatar, no: props.no})
         mutateNewAvatar.mutate({file: avatar, no: props.no})
     }
-
-    useEffect(() => { console.log(avatar) }, [avatar])
     
     return (
     <Modal onBackdropClick={() => props.onBackdropClick()} onCloseClick={() => props.onBackdropClick()} closeBackgroundColor={"white"}>

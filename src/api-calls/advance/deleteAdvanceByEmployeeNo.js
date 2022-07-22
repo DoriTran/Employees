@@ -3,7 +3,6 @@ import axios from 'axios'
 
 const deleteAdvanceByEmployeeNo = async(data) => {
     let res = null
-    console.log(data)
     try {
         res = await axios({
             method: 'delete',
