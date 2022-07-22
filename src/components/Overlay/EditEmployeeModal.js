@@ -67,17 +67,17 @@ const EditEmployeeModal = (props) => {
                     </div>
                 </div>
                 <div className="modal-button-group">
-                    <Button disabled={false} 
+                    <Button disabled={mutateEditEmployee.isLoading} 
                         variant="contained" 
                         style={{backgroundColor:"transparent", color:"black"}} 
                         onClick={props.onBackdropClick}>
                             Cancel
                     </Button>
-                    <Button disabled={false }
+                    <Button disabled={mutateEditEmployee.isLoading }
                         variant="contained" type="submit"
                         style={{backgroundColor:"#ededed", marginLeft:"5px", color:"black"}} 
                         >
-                            {false ? <CircularProgress size={'25px'}/> :'Submit'}
+                            {mutateEditEmployee.isLoading ? <CircularProgress size={'25px'}/> :'Submit'}
                     </Button>
                 </div>
             </form>

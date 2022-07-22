@@ -36,7 +36,7 @@ const Profile = (props) => {
                 <Navbar selected="Employee"/>
                 <ProfileInteraction profile={formattedProfile} teams={teams} no={EmployeeID} refetch={refetchProfile}/>
                 <div className="profile-container">
-                    <AvatarInfo className="left-side" profile={formattedProfile} />
+                    <AvatarInfo className="left-side" profile={formattedProfile} refetch={refetchProfile}/>
                     <div className="right-side">
                         <DetailButtonGroup tab={tab} setTab={setTab} />
                         {tab === "information" && <InfomationTab profile={formattedProfile} teamName={teams.filter(team => team.teamNo === profile.data.teamNo)[0].teamName}/>}

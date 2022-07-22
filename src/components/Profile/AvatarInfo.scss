@@ -6,8 +6,27 @@
     justify-content: flex-start;
 }
 
+.image-wrapper {
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
 .avatar-img {
-    padding-bottom: 10px ;
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.btn-upload-avatar {
+    background-color: rgb(188, 239, 255);
+    width: 50%;
+    margin-top: 30px;
+    padding: 3px;
+    border-radius: 25px;
 }
 
 .pill-info {
