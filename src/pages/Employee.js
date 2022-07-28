@@ -60,10 +60,12 @@ const Employee = () => {
             <Searcbar setSearchKey={setSearchKey} total={searchResult.length} />
             <SearchLabel />
             <SearchResult 
-                employees={searchResult.slice((page - 1) * 10, (page - 1) * 10 + 10)} page={page}
+                employees={searchResult.slice((page - 1) * 10, (page - 1) * 10 + 10)} 
+                page={page}
                 teams={teams}
                 checkedID={checkedID} setCheckedID={setCheckedID}
-                checkAll={checkAll} setCheckAll={setCheckAll} />
+                checkAll={checkAll} setCheckAll={setCheckAll}
+                refetch={refetchEmployee} />
             <Pagination page={page} maxPage={Math.ceil(searchResult.length / 10)} setPage={setPage} setCheckAll={setCheckAll} />
         </>
         )

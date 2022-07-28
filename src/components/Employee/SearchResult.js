@@ -2,12 +2,26 @@ import "./SearchResult.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faInfo, faTrashAlt } from "@fortawesome/free-solid-svg-icons"
 import { Link } from "react-router-dom";
+import { useMutation } from "react-query"
+
+import deleteEmployee from "../../api-calls/employee/deleteEmployee"
+import { useEffect } from "react";
 
 const SearchResult = (props) => {
     const deleteHandler = (EmployeeNo) => {
+        mutateDeleteEmployee.mutate(EmployeeNo)
         props.setCheckedID(prevCheckedIDs => prevCheckedIDs.filter(prevCheckedID => prevCheckedID !== EmployeeNo))
-        // Call api deleting
     }
+
+    // Delete handler
+    const mutateDeleteEmployee = useMutation(deleteEmployee)
+
+    useEffect(() => {
+        if (mutateDeleteEmployee.isSuccess) {
+            props.refetch()
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mutateDeleteEmployee.isSuccess])
 
     const handleCheckAll = () => {
         props.setCheckAll(!props.checkAll);
